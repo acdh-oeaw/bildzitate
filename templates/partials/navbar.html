@@ -28,8 +28,19 @@
                             <li><a class="dropdown-item" href="{% url 'webpage:data_model' %}">Data Model</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Browse</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Stöbern
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{% url 'archiv:person_browse' %}">Personen</a></li>
+                            <li><a class="dropdown-item" href="{% url 'archiv:book_browse' %}">Bücher</a></li>
+                            <li><a class="dropdown-item" href="{% url 'archiv:artwork_browse' %}">Kunstwerke</a></li>
+                            <li><a class="dropdown-item" href="{% url 'archiv:text_browse' %}">Texte</a></li>
+                            <li><a class="dropdown-item" href="{% url 'archiv:institution_browse' %}">Museen,
+                                    Sammlungen</a></li>
+                        </ul>
                     </li>
                 </ul>
                 <!-- <form class="d-flex">

@@ -10,15 +10,10 @@
             auf Bildende Kunst aus der deutschsprachigen Literatur der Moderne. Bereitgestellt werden sowohl die
             betreffenden
             Textzitate und eine Abbildung als auch ausführliche bibliographische Angaben und Angaben zum Kunstwerk.</p>
-        <p><strong><a href="search.html">Zur Suche</a></strong> - Der Einstieg in die Datenbank: eine
-            Suchfunktion und vier Listen mit den in der Datenbank vorhandenen AutorInnen, Texten, KünstlerInnen und
-            Kunstwerken.</p>
-        <p><strong><a href="tree.html">Zur Baumansicht</a></strong> - In dieser Ansicht können
-            Sie die in der Suchfunktion gewählten Datensätze einsehen.</p>
-        <p><strong><a href="projekt.html">Über das Projekt</a></strong> - Hier finden Sie
+        <p><strong>Stöbern</a></strong> - Der Einstieg in die Datenbank: eine
+            Suchfunktion und vier Listen mit den in der Datenbank vorhandenen <a href="{% url 'archiv:person_browse' %}">AutorInnen und KünstlerInnen</a>, <a href="{% url 'archiv:text_browse' %}">Texten</a> und <a href="{% url 'archiv:artwork_browse' %}">Kunstwerken</a>.</p>
+        <p><strong><a  href="{% url 'infos:about-the-project' %}">Über das Projekt</a></strong> - Hier finden Sie
             Informationen zur Entstehung der Datenbank sowie damit in Zusammenhang stehende Publikationen.</p>
-        <p><strong><a href="help.html">Hilfe/FAQ</a></strong> - Hier finden Sie Informationen zu den
-            Funktionen der Datenbank bzw. praktische Beispiele, anhand derer die Benutzung erläutert wird.</p>
         <p><strong>Wenn Sie uns zitieren möchten:</strong> Der Natur dieser Datenbank
             entsprechend sind wir nicht die AutorInnen der angeführten Texte und Bilder (Projektinformationen etc.
             ausgenommen). Wenn Sie über unsere Datenbank auf einen Kunstverweis aufmerksam werden, schlagen wir eine

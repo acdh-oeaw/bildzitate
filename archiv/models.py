@@ -391,14 +391,14 @@ class Person(models.Model):
         blank=True,
         verbose_name="Autorin/Autor von",
         help_text="Autorin/Autor von",
-        related_name="has_author"
+        related_name="has_author",
     )
     painter_of = models.ManyToManyField(
-        Book,
+        ArtWork,
         blank=True,
         verbose_name="Malerin/Maler von",
         help_text="Malerin/Maler von",
-        related_name="has_painter"
+        related_name="has_painter",
     )
     orig_data_csv = models.TextField(
         blank=True, null=True, verbose_name="The original data"
@@ -514,14 +514,14 @@ class Text(models.Model):
         blank=True,
         verbose_name="erwähnte Personen",
         help_text="im Text erwähnte Personen",
-        related_name="person_mentioned_in"
+        related_name="person_mentioned_in",
     )
     mentioned_artwork = models.ManyToManyField(
         ArtWork,
         blank=True,
         verbose_name="erwähnte Kunstwerke",
         help_text="im Text erwähnte Kunstwerke",
-        related_name="artwork_mentioned_in"
+        related_name="artwork_mentioned_in",
     )
     orig_data_csv = models.TextField(
         blank=True, null=True, verbose_name="The original data"
@@ -535,10 +535,10 @@ class Text(models.Model):
         verbose_name = "Text"
 
     def __str__(self):
-        if self.text:
-            return f"{self.text[:250]}"
+        if self.source:
+            return f"{self.source}"
         else:
-            return f"{self.id}"
+            return f"Text {self.id}"
 
     def field_dict(self):
         return model_to_dict(self)

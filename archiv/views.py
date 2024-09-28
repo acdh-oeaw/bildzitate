@@ -103,7 +103,8 @@ class BookListView(GenericListView):
     table_class = BookTable
     init_columns = [
         "id",
-        "legacy_pk",
+        "name",
+        "has_author",
     ]
     enable_merge = True
     template_name = "archiv/generic_list.html"
@@ -257,7 +258,7 @@ class TextListView(GenericListView):
     table_class = TextTable
     init_columns = [
         "id",
-        "legacy_pk",
+        "source",
     ]
     enable_merge = True
     template_name = "archiv/generic_list.html"

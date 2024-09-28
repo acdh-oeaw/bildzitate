@@ -43,18 +43,47 @@
     </div>
     <div class="card-body">
         {% block custom %}
-        <legend>Basic Information</legend>
         <table class="table table-bordered table-hover">
             {% for x in object.field_dict %}
-            <tr>
-                <th>
-                    <abbr title="{{x.help_text}}">{{ x.verbose_name }}</abbr>
-                </th>
-
-                <td>
-                    {{ x.value }}
+                {% if  x.f_type == 'REVRESE_RELATION' %}
+                <tr>
+                    <th>
+                        <abbr title="{{x.help_text}}">{{ x.verbose_name }}</abbr>
+                    </th>
+                    <td>
+                    {% for y in x.value %}
+                        <a href="{{ y.get_absolute_url }}">{{ y|safe }}</a>
+                    {% endfor %}
                 </td>
-            </tr>
+                </tr>
+                {% elif  x.f_type == 'FK' %}
+                <tr>
+                    <th>
+                        <abbr title="{{x.help_text}}">{{ x.verbose_name }}</abbr>
+                    </th>
+                    <td><a href="{{ x.value.get_absolute_url }}">{{ x.value|safe }}</a></td>
+                </tr>
+                {% elif x.f_type == 'M2M' %}
+                <tr>
+                    <th>
+                        <abbr title="{{x.help_text}}">{{ x.verbose_name }}</abbr>
+                    </th>
+                    <td>
+                        {% for y in x.value %}
+                        <a href="{{ y.get_absolute_url }}">{{ y|safe }}</a>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <th>
+                        <abbr title="{{x.help_text}}">{{ x.verbose_name }}</abbr>
+                    </th>
+                    <td>
+                        {{ x.value|safe }}
+                    </td>
+                </tr>
+            {% endif %}
             {% endfor %}
         </table>
     </div>

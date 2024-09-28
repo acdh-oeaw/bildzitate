@@ -5,10 +5,6 @@ from crispy_forms.layout import Submit, Layout
 from crispy_forms.bootstrap import AccordionGroup
 from crispy_bootstrap5.bootstrap5 import BS5Accordion
 
-try:
-    from vocabs.models import SkosConcept
-except ModuleNotFoundError:
-    pass
 from .models import (
     ArtWork,
     Book,

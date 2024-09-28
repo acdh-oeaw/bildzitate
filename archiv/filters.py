@@ -2,10 +2,6 @@
 import django_filters
 from dal import autocomplete
 
-try:
-    from vocabs.models import SkosConcept
-except ModuleNotFoundError:
-    pass
 from .models import (
     ArtWork,
     Book,
