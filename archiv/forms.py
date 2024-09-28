@@ -9,7 +9,7 @@ try:
     from vocabs.models import SkosConcept
 except ModuleNotFoundError:
     pass
-from . models import (
+from .models import (
     ArtWork,
     Book,
     Institution,
@@ -22,32 +22,27 @@ class ArtWorkFilterFormHelper(FormHelper):
     def __init__(self, *args, **kwargs):
         super(ArtWorkFilterFormHelper, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.form_class = 'genericFilterForm'
-        self.form_method = 'GET'
+        self.form_class = "genericFilterForm"
+        self.form_method = "GET"
         self.form_tag = False
         self.layout = Layout(
             BS5Accordion(
                 AccordionGroup(
-                    'Advanced search',
-                    'id',
-                    
-                    'legacy_pk',
-                    'name',
-                    'alt_name',
-                    'written_date',
-                    'part_of',
-                    'material',
-                    'dimensions',
-                    'holding_institution',
-                    css_id="more"
-                    ),
-                AccordionGroup(
-                    'admin',
-                    'legacy_id',
-                    css_id="admin_search"
-                    ),
-                )
+                    "Advanced search",
+                    "id",
+                    "legacy_pk",
+                    "name",
+                    "alt_name",
+                    "written_date",
+                    "part_of",
+                    "material",
+                    "dimensions",
+                    "holding_institution",
+                    css_id="more",
+                ),
+                AccordionGroup("admin", "legacy_id", css_id="admin_search"),
             )
+        )
 
 
 class ArtWorkForm(forms.ModelForm):
@@ -60,38 +55,35 @@ class ArtWorkForm(forms.ModelForm):
         super(ArtWorkForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = True
-        self.helper.form_class = 'form-horizontal'
-        self.helper.label_class = 'col-md-3'
-        self.helper.field_class = 'col-md-9'
-        self.helper.add_input(Submit('submit', 'save'),)
+        self.helper.form_class = "form-horizontal"
+        self.helper.label_class = "col-md-3"
+        self.helper.field_class = "col-md-9"
+        self.helper.add_input(
+            Submit("submit", "save"),
+        )
 
 
 class BookFilterFormHelper(FormHelper):
     def __init__(self, *args, **kwargs):
         super(BookFilterFormHelper, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.form_class = 'genericFilterForm'
-        self.form_method = 'GET'
+        self.form_class = "genericFilterForm"
+        self.form_method = "GET"
         self.form_tag = False
         self.layout = Layout(
             BS5Accordion(
                 AccordionGroup(
-                    'Advanced search',
-                    'id',
-                    
-                    'legacy_pk',
-                    'name',
-                    'written_date',
-                    'alt_written_date',
-                    css_id="more"
-                    ),
-                AccordionGroup(
-                    'admin',
-                    'legacy_id',
-                    css_id="admin_search"
-                    ),
-                )
+                    "Advanced search",
+                    "id",
+                    "legacy_pk",
+                    "name",
+                    "written_date",
+                    "alt_written_date",
+                    css_id="more",
+                ),
+                AccordionGroup("admin", "legacy_id", css_id="admin_search"),
             )
+        )
 
 
 class BookForm(forms.ModelForm):
@@ -104,35 +96,27 @@ class BookForm(forms.ModelForm):
         super(BookForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = True
-        self.helper.form_class = 'form-horizontal'
-        self.helper.label_class = 'col-md-3'
-        self.helper.field_class = 'col-md-9'
-        self.helper.add_input(Submit('submit', 'save'),)
+        self.helper.form_class = "form-horizontal"
+        self.helper.label_class = "col-md-3"
+        self.helper.field_class = "col-md-9"
+        self.helper.add_input(
+            Submit("submit", "save"),
+        )
 
 
 class InstitutionFilterFormHelper(FormHelper):
     def __init__(self, *args, **kwargs):
         super(InstitutionFilterFormHelper, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.form_class = 'genericFilterForm'
-        self.form_method = 'GET'
+        self.form_class = "genericFilterForm"
+        self.form_method = "GET"
         self.form_tag = False
         self.layout = Layout(
             BS5Accordion(
-                AccordionGroup(
-                    'Advanced search',
-                    'id',
-                    
-                    'name',
-                    css_id="more"
-                    ),
-                AccordionGroup(
-                    'admin',
-                    'legacy_id',
-                    css_id="admin_search"
-                    ),
-                )
+                AccordionGroup("Advanced search", "id", "name", css_id="more"),
+                AccordionGroup("admin", "legacy_id", css_id="admin_search"),
             )
+        )
 
 
 class InstitutionForm(forms.ModelForm):
@@ -145,37 +129,34 @@ class InstitutionForm(forms.ModelForm):
         super(InstitutionForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = True
-        self.helper.form_class = 'form-horizontal'
-        self.helper.label_class = 'col-md-3'
-        self.helper.field_class = 'col-md-9'
-        self.helper.add_input(Submit('submit', 'save'),)
+        self.helper.form_class = "form-horizontal"
+        self.helper.label_class = "col-md-3"
+        self.helper.field_class = "col-md-9"
+        self.helper.add_input(
+            Submit("submit", "save"),
+        )
 
 
 class PersonFilterFormHelper(FormHelper):
     def __init__(self, *args, **kwargs):
         super(PersonFilterFormHelper, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.form_class = 'genericFilterForm'
-        self.form_method = 'GET'
+        self.form_class = "genericFilterForm"
+        self.form_method = "GET"
         self.form_tag = False
         self.layout = Layout(
             BS5Accordion(
                 AccordionGroup(
-                    'Advanced search',
-                    'id',
-                    
-                    'legacy_pk',
-                    'name',
-                    'alt_name',
-                    css_id="more"
-                    ),
-                AccordionGroup(
-                    'admin',
-                    'legacy_id',
-                    css_id="admin_search"
-                    ),
-                )
+                    "Advanced search",
+                    "id",
+                    "legacy_pk",
+                    "name",
+                    "alt_name",
+                    css_id="more",
+                ),
+                AccordionGroup("admin", "legacy_id", css_id="admin_search"),
             )
+        )
 
 
 class PersonForm(forms.ModelForm):
@@ -188,38 +169,35 @@ class PersonForm(forms.ModelForm):
         super(PersonForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = True
-        self.helper.form_class = 'form-horizontal'
-        self.helper.label_class = 'col-md-3'
-        self.helper.field_class = 'col-md-9'
-        self.helper.add_input(Submit('submit', 'save'),)
+        self.helper.form_class = "form-horizontal"
+        self.helper.label_class = "col-md-3"
+        self.helper.field_class = "col-md-9"
+        self.helper.add_input(
+            Submit("submit", "save"),
+        )
 
 
 class TextFilterFormHelper(FormHelper):
     def __init__(self, *args, **kwargs):
         super(TextFilterFormHelper, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.form_class = 'genericFilterForm'
-        self.form_method = 'GET'
+        self.form_class = "genericFilterForm"
+        self.form_method = "GET"
         self.form_tag = False
         self.layout = Layout(
             BS5Accordion(
                 AccordionGroup(
-                    'Advanced search',
-                    'id',
-                    
-                    'legacy_pk',
-                    'text',
-                    'source',
-                    'book',
-                    css_id="more"
-                    ),
-                AccordionGroup(
-                    'admin',
-                    'legacy_id',
-                    css_id="admin_search"
-                    ),
-                )
+                    "Advanced search",
+                    "id",
+                    "legacy_pk",
+                    "text",
+                    "source",
+                    "book",
+                    css_id="more",
+                ),
+                AccordionGroup("admin", "legacy_id", css_id="admin_search"),
             )
+        )
 
 
 class TextForm(forms.ModelForm):
@@ -232,9 +210,9 @@ class TextForm(forms.ModelForm):
         super(TextForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = True
-        self.helper.form_class = 'form-horizontal'
-        self.helper.label_class = 'col-md-3'
-        self.helper.field_class = 'col-md-9'
-        self.helper.add_input(Submit('submit', 'save'),)
-
-
+        self.helper.form_class = "form-horizontal"
+        self.helper.label_class = "col-md-3"
+        self.helper.field_class = "col-md-9"
+        self.helper.add_input(
+            Submit("submit", "save"),
+        )

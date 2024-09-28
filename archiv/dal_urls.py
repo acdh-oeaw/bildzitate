@@ -2,31 +2,21 @@
 from django.urls import path
 from . import dal_views
 
-app_name = 'archiv'
+app_name = "archiv"
 urlpatterns = [
     path(
         "artwork-autocomplete",
         dal_views.ArtWorkAC.as_view(),
-        name='artwork-autocomplete'
+        name="artwork-autocomplete",
     ),
-    path(
-        "book-autocomplete",
-        dal_views.BookAC.as_view(),
-        name='book-autocomplete'
-    ),
+    path("book-autocomplete", dal_views.BookAC.as_view(), name="book-autocomplete"),
     path(
         "institution-autocomplete",
         dal_views.InstitutionAC.as_view(),
-        name='institution-autocomplete'
+        name="institution-autocomplete",
     ),
     path(
-        "person-autocomplete",
-        dal_views.PersonAC.as_view(),
-        name='person-autocomplete'
+        "person-autocomplete", dal_views.PersonAC.as_view(), name="person-autocomplete"
     ),
-    path(
-        "text-autocomplete",
-        dal_views.TextAC.as_view(),
-        name='text-autocomplete'
-    ),
+    path("text-autocomplete", dal_views.TextAC.as_view(), name="text-autocomplete"),
 ]

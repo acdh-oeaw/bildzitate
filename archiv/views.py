@@ -3,14 +3,14 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView
-from . filters import (
+from .filters import (
     ArtWorkListFilter,
     BookListFilter,
     InstitutionListFilter,
     PersonListFilter,
     TextListFilter,
 )
-from . forms import (
+from .forms import (
     ArtWorkForm,
     ArtWorkFilterFormHelper,
     BookForm,
@@ -22,14 +22,14 @@ from . forms import (
     TextForm,
     TextFilterFormHelper,
 )
-from . tables import (
+from .tables import (
     ArtWorkTable,
     BookTable,
     InstitutionTable,
     PersonTable,
     TextTable,
 )
-from . models import (
+from .models import (
     ArtWork,
     Book,
     Institution,
@@ -37,7 +37,10 @@ from . models import (
     Text,
 )
 from browsing.browsing_utils import (
-    GenericListView, BaseCreateView, BaseUpdateView, BaseDetailView
+    GenericListView,
+    BaseCreateView,
+    BaseUpdateView,
+    BaseDetailView,
 )
 
 
@@ -48,23 +51,24 @@ class ArtWorkListView(GenericListView):
     formhelper_class = ArtWorkFilterFormHelper
     table_class = ArtWorkTable
     init_columns = [
-        'id', 'name',
+        "id",
+        "name",
     ]
     enable_merge = True
-    template_name = 'archiv/generic_list.html'
+    template_name = "archiv/generic_list.html"
 
 
 class ArtWorkDetailView(BaseDetailView):
 
     model = ArtWork
-    template_name = 'archiv/generic_detail.html'
+    template_name = "archiv/generic_detail.html"
 
 
 class ArtWorkCreate(BaseCreateView):
 
     model = ArtWork
     form_class = ArtWorkForm
-    template_name = 'archiv/create_base_template.html'
+    template_name = "archiv/create_base_template.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -83,8 +87,8 @@ class ArtWorkUpdate(BaseUpdateView):
 
 class ArtWorkDelete(DeleteView):
     model = ArtWork
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('archiv:artwork_browse')
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("archiv:artwork_browse")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -98,23 +102,24 @@ class BookListView(GenericListView):
     formhelper_class = BookFilterFormHelper
     table_class = BookTable
     init_columns = [
-        'id', 'legacy_pk',
+        "id",
+        "legacy_pk",
     ]
     enable_merge = True
-    template_name = 'archiv/generic_list.html'
+    template_name = "archiv/generic_list.html"
 
 
 class BookDetailView(BaseDetailView):
 
     model = Book
-    template_name = 'archiv/generic_detail.html'
+    template_name = "archiv/generic_detail.html"
 
 
 class BookCreate(BaseCreateView):
 
     model = Book
     form_class = BookForm
-    template_name = 'archiv/create_base_template.html'
+    template_name = "archiv/create_base_template.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -133,8 +138,8 @@ class BookUpdate(BaseUpdateView):
 
 class BookDelete(DeleteView):
     model = Book
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('archiv:book_browse')
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("archiv:book_browse")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -148,23 +153,24 @@ class InstitutionListView(GenericListView):
     formhelper_class = InstitutionFilterFormHelper
     table_class = InstitutionTable
     init_columns = [
-        'id', 'name',
+        "id",
+        "name",
     ]
     enable_merge = True
-    template_name = 'archiv/generic_list.html'
+    template_name = "archiv/generic_list.html"
 
 
 class InstitutionDetailView(BaseDetailView):
 
     model = Institution
-    template_name = 'archiv/generic_detail.html'
+    template_name = "archiv/generic_detail.html"
 
 
 class InstitutionCreate(BaseCreateView):
 
     model = Institution
     form_class = InstitutionForm
-    template_name = 'archiv/create_base_template.html'
+    template_name = "archiv/create_base_template.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -183,8 +189,8 @@ class InstitutionUpdate(BaseUpdateView):
 
 class InstitutionDelete(DeleteView):
     model = Institution
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('archiv:institution_browse')
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("archiv:institution_browse")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -198,23 +204,24 @@ class PersonListView(GenericListView):
     formhelper_class = PersonFilterFormHelper
     table_class = PersonTable
     init_columns = [
-        'id', 'legacy_pk',
+        "id",
+        "legacy_pk",
     ]
     enable_merge = True
-    template_name = 'archiv/generic_list.html'
+    template_name = "archiv/generic_list.html"
 
 
 class PersonDetailView(BaseDetailView):
 
     model = Person
-    template_name = 'archiv/generic_detail.html'
+    template_name = "archiv/generic_detail.html"
 
 
 class PersonCreate(BaseCreateView):
 
     model = Person
     form_class = PersonForm
-    template_name = 'archiv/create_base_template.html'
+    template_name = "archiv/create_base_template.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -233,8 +240,8 @@ class PersonUpdate(BaseUpdateView):
 
 class PersonDelete(DeleteView):
     model = Person
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('archiv:person_browse')
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("archiv:person_browse")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -248,23 +255,24 @@ class TextListView(GenericListView):
     formhelper_class = TextFilterFormHelper
     table_class = TextTable
     init_columns = [
-        'id', 'legacy_pk',
+        "id",
+        "legacy_pk",
     ]
     enable_merge = True
-    template_name = 'archiv/generic_list.html'
+    template_name = "archiv/generic_list.html"
 
 
 class TextDetailView(BaseDetailView):
 
     model = Text
-    template_name = 'archiv/generic_detail.html'
+    template_name = "archiv/generic_detail.html"
 
 
 class TextCreate(BaseCreateView):
 
     model = Text
     form_class = TextForm
-    template_name = 'archiv/create_base_template.html'
+    template_name = "archiv/create_base_template.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -283,11 +291,9 @@ class TextUpdate(BaseUpdateView):
 
 class TextDelete(DeleteView):
     model = Text
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('archiv:text_browse')
+    template_name = "webpage/confirm_delete.html"
+    success_url = reverse_lazy("archiv:text_browse")
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(TextDelete, self).dispatch(*args, **kwargs)
-
-

@@ -3,6 +3,7 @@
 from django.db import models
 from django.urls import reverse
 from next_prev import next_in_order, prev_in_order
+
 try:
     from vocabs.models import SkosConcept
 except ModuleNotFoundError:
@@ -19,13 +20,12 @@ models.Field.set_extra = set_extra
 
 
 class ArtWork(models.Model):
-    """ Beschreibt ein Kustwerk """
-    legacy_id = models.CharField(
-        max_length=300, blank=True,
-        verbose_name="Legacy ID"
-        )
+    """Beschreibt ein Kustwerk"""
+
+    legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     legacy_pk = models.IntegerField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Primärschlüssel Alt",
         help_text="Primärschlüssel Alt",
     ).set_extra(
@@ -65,7 +65,7 @@ class ArtWork(models.Model):
     )
     part_of = models.ForeignKey(
         "ArtWork",
-        related_name='rvn_artwork_part_of_artwork',
+        related_name="rvn_artwork_part_of_artwork",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -97,7 +97,7 @@ class ArtWork(models.Model):
     )
     holding_institution = models.ForeignKey(
         "Institution",
-        related_name='rvn_artwork_holding_institution_institution',
+        related_name="rvn_artwork_holding_institution_institution",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -108,20 +108,16 @@ class ArtWork(models.Model):
         data_lookup="amuseum",
     )
     orig_data_csv = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="The original data"
-        ).set_extra(
-            is_public=True
-        )
+        blank=True, null=True, verbose_name="The original data"
+    ).set_extra(is_public=True)
 
     class Meta:
-        
+
         ordering = [
-            'name',
+            "name",
         ]
         verbose_name = "Kunstwerk"
-    
+
     def __str__(self):
         if self.name:
             return "{}".format(self.name)
@@ -133,29 +129,28 @@ class ArtWork(models.Model):
 
     @classmethod
     def get_listview_url(self):
-        return reverse('archiv:artwork_browse')
-    
+        return reverse("archiv:artwork_browse")
+
     @classmethod
     def get_source_table(self):
         return "artworks"
-    
-    
+
     @classmethod
     def get_natural_primary_key(self):
         return "legacy_pk"
-    
+
     @classmethod
     def get_createview_url(self):
-        return reverse('archiv:artwork_create')
+        return reverse("archiv:artwork_create")
 
     def get_absolute_url(self):
-        return reverse('archiv:artwork_detail', kwargs={'pk': self.id})
+        return reverse("archiv:artwork_detail", kwargs={"pk": self.id})
 
     def get_delete_url(self):
-        return reverse('archiv:artwork_delete', kwargs={'pk': self.id})
+        return reverse("archiv:artwork_delete", kwargs={"pk": self.id})
 
     def get_edit_url(self):
-        return reverse('archiv:artwork_edit', kwargs={'pk': self.id})
+        return reverse("archiv:artwork_edit", kwargs={"pk": self.id})
 
     def get_next(self):
         try:
@@ -163,10 +158,7 @@ class ArtWork(models.Model):
         except ValueError:
             next = False
         if next:
-            return reverse(
-                'archiv:artwork_detail',
-                kwargs={'pk': next.id}
-            )
+            return reverse("archiv:artwork_detail", kwargs={"pk": next.id})
         return False
 
     def get_prev(self):
@@ -175,21 +167,17 @@ class ArtWork(models.Model):
         except:
             prev = False
         if prev:
-            return reverse(
-                'archiv:artwork_detail',
-                kwargs={'pk': prev.id}
-            )
+            return reverse("archiv:artwork_detail", kwargs={"pk": prev.id})
         return False
 
 
 class Book(models.Model):
-    """ Buch """
-    legacy_id = models.CharField(
-        max_length=300, blank=True,
-        verbose_name="Legacy ID"
-        )
+    """Buch"""
+
+    legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     legacy_pk = models.IntegerField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Primärschlüssel Alt",
         help_text="Primärschlüssel Alt",
     ).set_extra(
@@ -227,20 +215,16 @@ class Book(models.Model):
         data_lookup="byear2",
     )
     orig_data_csv = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="The original data"
-        ).set_extra(
-            is_public=True
-        )
+        blank=True, null=True, verbose_name="The original data"
+    ).set_extra(is_public=True)
 
     class Meta:
-        
+
         ordering = [
-            'legacy_pk',
+            "legacy_pk",
         ]
         verbose_name = "Book"
-    
+
     def __str__(self):
         if self.legacy_pk:
             return "{}".format(self.legacy_pk)
@@ -252,29 +236,28 @@ class Book(models.Model):
 
     @classmethod
     def get_listview_url(self):
-        return reverse('archiv:book_browse')
-    
+        return reverse("archiv:book_browse")
+
     @classmethod
     def get_source_table(self):
         return "Buch"
-    
-    
+
     @classmethod
     def get_natural_primary_key(self):
         return "legacy_pk"
-    
+
     @classmethod
     def get_createview_url(self):
-        return reverse('archiv:book_create')
+        return reverse("archiv:book_create")
 
     def get_absolute_url(self):
-        return reverse('archiv:book_detail', kwargs={'pk': self.id})
+        return reverse("archiv:book_detail", kwargs={"pk": self.id})
 
     def get_delete_url(self):
-        return reverse('archiv:book_delete', kwargs={'pk': self.id})
+        return reverse("archiv:book_delete", kwargs={"pk": self.id})
 
     def get_edit_url(self):
-        return reverse('archiv:book_edit', kwargs={'pk': self.id})
+        return reverse("archiv:book_edit", kwargs={"pk": self.id})
 
     def get_next(self):
         try:
@@ -282,10 +265,7 @@ class Book(models.Model):
         except ValueError:
             next = False
         if next:
-            return reverse(
-                'archiv:book_detail',
-                kwargs={'pk': next.id}
-            )
+            return reverse("archiv:book_detail", kwargs={"pk": next.id})
         return False
 
     def get_prev(self):
@@ -294,19 +274,14 @@ class Book(models.Model):
         except:
             prev = False
         if prev:
-            return reverse(
-                'archiv:book_detail',
-                kwargs={'pk': prev.id}
-            )
+            return reverse("archiv:book_detail", kwargs={"pk": prev.id})
         return False
 
 
 class Institution(models.Model):
-    """ Institution """
-    legacy_id = models.CharField(
-        max_length=300, blank=True,
-        verbose_name="Legacy ID"
-        )
+    """Institution"""
+
+    legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     name = models.CharField(
         max_length=250,
         blank=True,
@@ -317,20 +292,16 @@ class Institution(models.Model):
         arche_prop="hasTitle",
     )
     orig_data_csv = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="The original data"
-        ).set_extra(
-            is_public=True
-        )
+        blank=True, null=True, verbose_name="The original data"
+    ).set_extra(is_public=True)
 
     class Meta:
-        
+
         ordering = [
-            'name',
+            "name",
         ]
         verbose_name = "Institution"
-    
+
     def __str__(self):
         if self.name:
             return "{}".format(self.name)
@@ -342,29 +313,28 @@ class Institution(models.Model):
 
     @classmethod
     def get_listview_url(self):
-        return reverse('archiv:institution_browse')
-    
+        return reverse("archiv:institution_browse")
+
     @classmethod
     def get_source_table(self):
         return "Institution"
-    
-    
+
     @classmethod
     def get_natural_primary_key(self):
         return "name"
-    
+
     @classmethod
     def get_createview_url(self):
-        return reverse('archiv:institution_create')
+        return reverse("archiv:institution_create")
 
     def get_absolute_url(self):
-        return reverse('archiv:institution_detail', kwargs={'pk': self.id})
+        return reverse("archiv:institution_detail", kwargs={"pk": self.id})
 
     def get_delete_url(self):
-        return reverse('archiv:institution_delete', kwargs={'pk': self.id})
+        return reverse("archiv:institution_delete", kwargs={"pk": self.id})
 
     def get_edit_url(self):
-        return reverse('archiv:institution_edit', kwargs={'pk': self.id})
+        return reverse("archiv:institution_edit", kwargs={"pk": self.id})
 
     def get_next(self):
         try:
@@ -372,10 +342,7 @@ class Institution(models.Model):
         except ValueError:
             next = False
         if next:
-            return reverse(
-                'archiv:institution_detail',
-                kwargs={'pk': next.id}
-            )
+            return reverse("archiv:institution_detail", kwargs={"pk": next.id})
         return False
 
     def get_prev(self):
@@ -384,21 +351,17 @@ class Institution(models.Model):
         except:
             prev = False
         if prev:
-            return reverse(
-                'archiv:institution_detail',
-                kwargs={'pk': prev.id}
-            )
+            return reverse("archiv:institution_detail", kwargs={"pk": prev.id})
         return False
 
 
 class Person(models.Model):
-    """ Person """
-    legacy_id = models.CharField(
-        max_length=300, blank=True,
-        verbose_name="Legacy ID"
-        )
+    """Person"""
+
+    legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     legacy_pk = models.IntegerField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Primärschlüssel Alt",
         help_text="Primärschlüssel Alt",
     ).set_extra(
@@ -428,20 +391,16 @@ class Person(models.Model):
         arche_prop="hasAlternativeTitle",
     )
     orig_data_csv = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="The original data"
-        ).set_extra(
-            is_public=True
-        )
+        blank=True, null=True, verbose_name="The original data"
+    ).set_extra(is_public=True)
 
     class Meta:
-        
+
         ordering = [
-            'legacy_pk',
+            "legacy_pk",
         ]
         verbose_name = "Person"
-    
+
     def __str__(self):
         if self.legacy_pk:
             return "{}".format(self.legacy_pk)
@@ -453,29 +412,28 @@ class Person(models.Model):
 
     @classmethod
     def get_listview_url(self):
-        return reverse('archiv:person_browse')
-    
+        return reverse("archiv:person_browse")
+
     @classmethod
     def get_source_table(self):
         return "Person"
-    
-    
+
     @classmethod
     def get_natural_primary_key(self):
         return "legacy_pk"
-    
+
     @classmethod
     def get_createview_url(self):
-        return reverse('archiv:person_create')
+        return reverse("archiv:person_create")
 
     def get_absolute_url(self):
-        return reverse('archiv:person_detail', kwargs={'pk': self.id})
+        return reverse("archiv:person_detail", kwargs={"pk": self.id})
 
     def get_delete_url(self):
-        return reverse('archiv:person_delete', kwargs={'pk': self.id})
+        return reverse("archiv:person_delete", kwargs={"pk": self.id})
 
     def get_edit_url(self):
-        return reverse('archiv:person_edit', kwargs={'pk': self.id})
+        return reverse("archiv:person_edit", kwargs={"pk": self.id})
 
     def get_next(self):
         try:
@@ -483,10 +441,7 @@ class Person(models.Model):
         except ValueError:
             next = False
         if next:
-            return reverse(
-                'archiv:person_detail',
-                kwargs={'pk': next.id}
-            )
+            return reverse("archiv:person_detail", kwargs={"pk": next.id})
         return False
 
     def get_prev(self):
@@ -495,21 +450,17 @@ class Person(models.Model):
         except:
             prev = False
         if prev:
-            return reverse(
-                'archiv:person_detail',
-                kwargs={'pk': prev.id}
-            )
+            return reverse("archiv:person_detail", kwargs={"pk": prev.id})
         return False
 
 
 class Text(models.Model):
-    """ Text """
-    legacy_id = models.CharField(
-        max_length=300, blank=True,
-        verbose_name="Legacy ID"
-        )
+    """Text"""
+
+    legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     legacy_pk = models.IntegerField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Primärschlüssel Alt",
         help_text="Primärschlüssel Alt",
     ).set_extra(
@@ -519,7 +470,8 @@ class Text(models.Model):
         arche_prop_str_template="Primärschlüssel Alt: <value>",
     )
     text = models.TextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Text",
         help_text="Text",
     ).set_extra(
@@ -527,7 +479,8 @@ class Text(models.Model):
         data_lookup="ttext",
     )
     source = models.TextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Quelle",
         help_text="Quelle",
     ).set_extra(
@@ -536,7 +489,7 @@ class Text(models.Model):
     )
     book = models.ForeignKey(
         "Book",
-        related_name='rvn_text_book_book',
+        related_name="rvn_text_book_book",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -547,20 +500,16 @@ class Text(models.Model):
         data_lookup="bid",
     )
     orig_data_csv = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="The original data"
-        ).set_extra(
-            is_public=True
-        )
+        blank=True, null=True, verbose_name="The original data"
+    ).set_extra(is_public=True)
 
     class Meta:
-        
+
         ordering = [
-            'legacy_pk',
+            "legacy_pk",
         ]
         verbose_name = "Text"
-    
+
     def __str__(self):
         if self.legacy_pk:
             return "{}".format(self.legacy_pk)
@@ -572,29 +521,28 @@ class Text(models.Model):
 
     @classmethod
     def get_listview_url(self):
-        return reverse('archiv:text_browse')
-    
+        return reverse("archiv:text_browse")
+
     @classmethod
     def get_source_table(self):
         return "Text"
-    
-    
+
     @classmethod
     def get_natural_primary_key(self):
         return "legacy_pk"
-    
+
     @classmethod
     def get_createview_url(self):
-        return reverse('archiv:text_create')
+        return reverse("archiv:text_create")
 
     def get_absolute_url(self):
-        return reverse('archiv:text_detail', kwargs={'pk': self.id})
+        return reverse("archiv:text_detail", kwargs={"pk": self.id})
 
     def get_delete_url(self):
-        return reverse('archiv:text_delete', kwargs={'pk': self.id})
+        return reverse("archiv:text_delete", kwargs={"pk": self.id})
 
     def get_edit_url(self):
-        return reverse('archiv:text_edit', kwargs={'pk': self.id})
+        return reverse("archiv:text_edit", kwargs={"pk": self.id})
 
     def get_next(self):
         try:
@@ -602,10 +550,7 @@ class Text(models.Model):
         except ValueError:
             next = False
         if next:
-            return reverse(
-                'archiv:text_detail',
-                kwargs={'pk': next.id}
-            )
+            return reverse("archiv:text_detail", kwargs={"pk": next.id})
         return False
 
     def get_prev(self):
@@ -614,10 +559,5 @@ class Text(models.Model):
         except:
             prev = False
         if prev:
-            return reverse(
-                'archiv:text_detail',
-                kwargs={'pk': prev.id}
-            )
+            return reverse("archiv:text_detail", kwargs={"pk": prev.id})
         return False
-
-
