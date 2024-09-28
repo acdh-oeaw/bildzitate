@@ -1,36 +1,70 @@
-{% extends "webpage/base.html" %}
+{% extends "base.html" %}
 {% load static %}
 {% load webpage_extras %}
 {% block title %}{{ object.name }}{% endblock %}
 {% block content %}
-    <div class="container">
-        <div class="card">
-            <div class="card-header" style="text-align: center">
-                <h1>{{ object.title }}</h1>
-                {% if object.subtitle %}
-                    <h2>{{ object.subtitle}}</h2>
-                {% endif %}
-            </div>
-            <div class="card-body">
-                {{ object.description|safe}}
-            </div>
-            <div class="card-footer" style="text-align: center">
-                <p>
-                    <small>{{ object.author }}</small>
-                    <br />
-                    <a href="{{ object.github }}">{{ object.github}}</a>
-                    {% if user.is_authenticated and object.get_edit_url %}
-                        <br />
-                        <a href="{{ object.get_edit_url }}">
-                            <i class="feather-32" data-feather="edit" title="edit"></i>
-                        </a>
-                    {% elif user.is_authenticated %}
-                        <br />
-                        <small>Data fetched from metadata file, better to create an <a href="{% url 'infos:about_create' %}">AboutTheProject</a> object</small>
-                    {% endif %}
-                </p>
-            </div>
-
-        </div>
-    </div>
+<div class="container">
+    <h1> Über die DATENBANK LITERARISCHER BILDZITATE</h1>
+    <p>Die Datenbank entstand im Rahmen zweier Projekte, die vom &Ouml;sterreichischen Wissenschaftsfonds (FWF)
+        gef&ouml;rdert wurden: &bdquo;<a href="https://germanistik.univie.ac.at/institut/projekte/kunst-im-text/">Kunst
+            im Text</a>&ldquo; (2005&ndash;2009) und &bdquo;<a
+            href="https://germanistik.univie.ac.at/institut/projekte/das-bildzitat-intermedialitaet-und-tradition/">Das
+            Bildzitat &ndash; Intermedialit&auml;t und Tradition</a>&ldquo; (2009&ndash;2014). Beide befassten sich mit
+        den Referenzen auf nicht-fiktive Kunstwerke in literarischen Texten der deutsch&shy;sprachigen Moderne, wobei
+        einerseits die betreffende intermediale Spezifik, andererseits die Traditions&shy;bildung bei Kunstverweisen im
+        Mittelpunkt standen. Zu den Ergebnissen dieser Projekte geh&ouml;ren die Publikationen:</p>
+        <ul>
+            <li>
+                Konstanze Fliedl, Marina Rauchenbacher u. Joanna Wolf (Hg.): Handbuch der Kunstzitate.
+                Malerei, Skulptur, Fotografie in der deutschsprachigen Literatur der Moderne. 2 Bde. Berlin/Boston: De Gruyter
+                2011; sowie
+            </li>
+            <li>
+                Konstanze Fliedl, Katharina Serles u. Bernhard Oberreither (Hg.):
+                Gem&auml;lderedereien. Zur literarischen Diskursivierung von Bildern. Berlin: E. Schmidt 2013 (= Philologische
+                Studien und Quellen 42)
+            </li>
+        </ul>
+    <p>Zugleich wurden die Daten aller untersuchten Texte und der dort &sbquo;zitierten&lsquo; Kunstwerke gesammelt. Im
+        Unterschied zum &bdquo;Handbuch der Kunstzitate&ldquo;, dessen Beitr&auml;ge sich jeweils auf Autoren und
+        Autorinnen beziehen, sind die Informa&shy;tionen f&uuml;r die vorliegende Datenbank ausgehend von den
+        meistzi&shy;tierten Kunstwerken gefiltert; dabei wurde bisher nur ein Teil der Datens&auml;tze verwertet. Um
+        weitere Eintragungen aus dem unersch&ouml;pflichen Material vornehmen zu k&ouml;nnen, werden noch
+        Finan&shy;zierungs&shy;m&ouml;glich&shy;keiten gesucht.</p>
+    <p>Zu hoffen steht, dass sich die Datenbank als hilfreiches Instrument f&uuml;r weitere Forschungen erweist. Unser
+        Dank gilt den Institu&shy;tionen, die das Vorhaben materiell und strukturell unterst&uuml;tzt haben, neben dem
+        FWF die Universit&auml;t Wien, vorab das Institut f&uuml;r Germanistik. &nbsp;Pers&ouml;nlich m&ouml;chte ich
+        allen danken, die den Projekten ihr Engagement und ihre &ndash; oft an Aufopferung grenzende &ndash; Mitarbeit
+        gewidmet haben, besonders Dr.<sup>in</sup> Marina Rauchenbacher, Dr.<sup>in</sup> Joanna&nbsp; Wolf, Mag.<sup>a</sup> Katharina Serles und Mag. Bernhard Oberreither.</p>
+    <p class="text-end">Wien, im Juli 2014 <br />Konstanze Fliedl</p>
+    <hr />
+    <h2>Zu den Autorinnen und Autoren</h2>
+    <p>Untersucht wurden die Oeuvres von rund 300 Autorinnen und Autoren, wobei der Untersuchungs&shy;zeitraum aus
+        kultur- und mediengeschichtlichen Gr&uuml;nden zun&auml;chst ab dem Beginn der literarischen Moderne, also etwa
+        1880, angesetzt wurde; im Verlauf der Projekte wurde aber vielfach bis etwa in die Mitte des 19. Jahrhunderts
+        zur&uuml;ckgegangen. Die Autoren&shy;auswahl erfolgte aufgrund der thematischen Ergiebigkeit, aber auch der
+        literatur&shy;historischen Geltung. Nach den &bdquo;Bildzitaten&ldquo; gesucht wurde zum Teil aufgrund bereits
+        vorliegender Untersuchungen, in der Hauptsache jedoch durch Autopsie. Insgesamt wurden ca. 16.000
+        Datens&auml;tze erstellt.</p>
+    <h2>Zu den Kunstwerken</h2>
+    <p>Aus diesen Daten&shy;s&auml;tzen wurden nun die meist&shy;zitierten Kunstwerke gefiltert. Dabei war nicht die
+        h&ouml;chste Anzahl von Zitaten &uuml;berhaupt, sondern die Nennungen bei den meisten Autorinnen und Autoren
+        ausschlaggebend, da die Reihung sonst durch eine dasselbe Kunstwerk immer wieder zitierende Einzel&shy;person
+        h&auml;tte verzerrt werden k&ouml;nnen.</p>
+    <p>Der Begriff &bdquo;Kunstwerk&ldquo; wurde dabei auch auf bestimmte Sujets bezogen, wie etwa auf Claude Monets
+        <em>Seerosen</em> oder Paul C&eacute;zannes <em>Monte Saint-Victoire</em>; die betreffenden litera&shy;rischen
+        Verweise beziehen sich so gut wie nie auf ein identifi&shy;zierbares Einzelwerk und h&auml;tten daher in der
+        Datenbank nicht ber&uuml;cksichtigt werden k&ouml;nnen; daher sind solche Sujets zu einem fiktiven
+        &sbquo;Werk&lsquo; zusammen&shy;gefasst worden. &Auml;hnliches gilt f&uuml;r Kunstwerke, die selbst aus
+        Einzelwerken bestehen, wie etwa Michelan&shy;gelos Ausmalung der Sixtinischen Kapelle; zum Zweck der
+        Z&auml;hlung ist also etwa eine Erw&auml;hnung der <em>Belebung Adams</em> als Verweis auf die Sixtina gewertet
+        worden (in der Datenbank selbst sind die betreffenden Teil-Werke jedoch auch einzeln abrufbar).</p>
+    <h2>Zur Vollständigkeit</h2>
+    <p>Die Datenbank will die intermediale Kategorie des Kunst- bzw. Bildzitats in ihrer qualitativen und quantitativen
+        Vielfalt darstellen &ndash; was bedeutet, dass Tendenzen und Gewichtungen ebenso ablesbar sind wie die
+        prinzipielle Unabschlie&szlig;barkeit des Forschungs&shy;gebiets. Nicht nur hoffen wir auf&nbsp; finanzielle
+        M&ouml;glich&shy;keiten, einen weiteren Teil unserer Datens&auml;tze einzuspeichern &ndash; wir nehmen auch sehr
+        gerne Hinweise auf weitere Autorinnen und Autoren, Texte und Textstellen entgegen (germanistik@univie.ac.at).
+    </p>
+</div>
 {% endblock %}

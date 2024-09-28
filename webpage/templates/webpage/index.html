@@ -4,10 +4,34 @@
 {% load webpage_extras %}
 {% block content %}
 
+<div class="container pt-2">
+    <h1 class="display-1 text-center">DATENBANK LITERARISCHER BILDZITATE</h2>
+        <p class="lead">Die „Datenbank literarischer Bildzitate“ beinhaltet über 1.500 Verweise
+            auf Bildende Kunst aus der deutschsprachigen Literatur der Moderne. Bereitgestellt werden sowohl die
+            betreffenden
+            Textzitate und eine Abbildung als auch ausführliche bibliographische Angaben und Angaben zum Kunstwerk.</p>
+        <p><strong><a href="search.html">Zur Suche</a></strong> - Der Einstieg in die Datenbank: eine
+            Suchfunktion und vier Listen mit den in der Datenbank vorhandenen AutorInnen, Texten, KünstlerInnen und
+            Kunstwerken.</p>
+        <p><strong><a href="tree.html">Zur Baumansicht</a></strong> - In dieser Ansicht können
+            Sie die in der Suchfunktion gewählten Datensätze einsehen.</p>
+        <p><strong><a href="projekt.html">Über das Projekt</a></strong> - Hier finden Sie
+            Informationen zur Entstehung der Datenbank sowie damit in Zusammenhang stehende Publikationen.</p>
+        <p><strong><a href="help.html">Hilfe/FAQ</a></strong> - Hier finden Sie Informationen zu den
+            Funktionen der Datenbank bzw. praktische Beispiele, anhand derer die Benutzung erläutert wird.</p>
+        <p><strong>Wenn Sie uns zitieren möchten:</strong> Der Natur dieser Datenbank
+            entsprechend sind wir nicht die AutorInnen der angeführten Texte und Bilder (Projektinformationen etc.
+            ausgenommen). Wenn Sie über unsere Datenbank auf einen Kunstverweis aufmerksam werden, schlagen wir eine
+            Zitation wie folgt vor:</p>
+            <blockquote class="blockquote">
+                „[Bibliographische Angabe der Textstelle]. Vgl. dieses Zitat bei: Datenbank
+            literarischer Bildzitate. Referenzen auf Bildende Kunst in der deutschsprachigen Literatur der Moderne.
+            Entstanden
+            unter der Leitung von Konstanze Fliedl. Wien 2014. URL: http://www.univie.ac.at/bildzitat (aufgerufen am
+            ...).“</blockquote>
+</div>
 
-    <h1 class="text-center">{% projects_metadata 'title' %}</h1>
-    <h2 class="text-center">{% lorem 10 w %}</h2>
-    <p class="text-center">{% lorem 4 %}</p>
+
 
 
 {% endblock %}
