@@ -5,7 +5,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 PROJECT_NAME = "bzd"
-
+os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
 
 ACDH_IMPRINT_URL = "https://imprint.acdh.oeaw.ac.at/"
 

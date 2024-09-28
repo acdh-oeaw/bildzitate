@@ -205,7 +205,7 @@ class PersonListView(GenericListView):
     table_class = PersonTable
     init_columns = [
         "id",
-        "legacy_pk",
+        "name",
     ]
     enable_merge = True
     template_name = "archiv/generic_list.html"
@@ -232,6 +232,7 @@ class PersonUpdate(BaseUpdateView):
 
     model = Person
     form_class = PersonForm
+    template_name = "archiv/create_base_template.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -283,6 +284,7 @@ class TextUpdate(BaseUpdateView):
 
     model = Text
     form_class = TextForm
+    template_name = "archiv/create_base_template.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):

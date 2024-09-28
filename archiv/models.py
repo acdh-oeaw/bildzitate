@@ -116,9 +116,9 @@ class ArtWork(models.Model):
 
     def __str__(self):
         if self.name:
-            return "{}".format(self.name)
+            return f"{self.name}"
         else:
-            return "{}".format(self.legacy_id)
+            return f"{self.id}"
 
     def field_dict(self):
         return model_to_dict(self)
@@ -222,10 +222,10 @@ class Book(models.Model):
         verbose_name = "Book"
 
     def __str__(self):
-        if self.legacy_pk:
-            return "{}".format(self.legacy_pk)
+        if self.name:
+            return f"{self.name}"
         else:
-            return "{}".format(self.legacy_id)
+            return f"{self.id}"
 
     def field_dict(self):
         return model_to_dict(self)
@@ -300,9 +300,9 @@ class Institution(models.Model):
 
     def __str__(self):
         if self.name:
-            return "{}".format(self.name)
+            return f"{self.name}"
         else:
-            return "{}".format(self.legacy_id)
+            return f"{self.id}"
 
     def field_dict(self):
         return model_to_dict(self)
@@ -412,10 +412,10 @@ class Person(models.Model):
         verbose_name = "Person"
 
     def __str__(self):
-        if self.legacy_pk:
-            return "{}".format(self.legacy_pk)
+        if self.name:
+            return f"{self.name}"
         else:
-            return "{}".format(self.legacy_id)
+            return f"{self.id}"
 
     def field_dict(self):
         return model_to_dict(self)
@@ -530,15 +530,15 @@ class Text(models.Model):
     class Meta:
 
         ordering = [
-            "legacy_pk",
+            "id",
         ]
         verbose_name = "Text"
 
     def __str__(self):
-        if self.legacy_pk:
-            return "{}".format(self.legacy_pk)
+        if self.text:
+            return f"{self.text[:250]}"
         else:
-            return "{}".format(self.legacy_id)
+            return f"{self.id}"
 
     def field_dict(self):
         return model_to_dict(self)
