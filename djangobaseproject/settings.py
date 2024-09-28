@@ -11,6 +11,8 @@ ACDH_IMPRINT_URL = "https://imprint.acdh.oeaw.ac.at/"
 
 REDMINE_ID = "18716"
 
+SHEET_ID = "1SpUeiFItgvpQunefnrXxddUpHyOnh5hKPLn1pSX7yyU"
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -48,6 +50,7 @@ INSTALLED_APPS = [
     "django_tables2",
     "django_spaghetti",
     "appcreator",
+    "archiv",
     "webpage",
     "browsing",
     "infos",

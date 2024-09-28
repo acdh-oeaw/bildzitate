@@ -330,18 +330,20 @@ class {{ x.model_name }}ListView(GenericListView):
         'id', {%- if x.model_representation != 'nan' %} '{{ x.model_representation }}', {%- endif %}
     ]
     enable_merge = True
+    template_name = 'archiv/generic_list.html'
 
 
 class {{ x.model_name }}DetailView(BaseDetailView):
 
     model = {{ x.model_name }}
-    template_name = 'browsing/generic_detail.html'
+    template_name = 'archiv/generic_detail.html'
 
 
 class {{ x.model_name }}Create(BaseCreateView):
 
     model = {{ x.model_name }}
     form_class = {{ x.model_name }}Form
+    template_name = 'archiv/create_base_template.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -524,7 +526,10 @@ class {{ x.model_name }}(models.Model):
         return reverse('{{ app_name }}:{{ x.model_name|lower }}_edit', kwargs={'pk': self.id})
 
     def get_next(self):
-        next = next_in_order(self)
+        try:
+            next = next_in_order(self)
+        except ValueError:
+            next = False
         if next:
             return reverse(
                 '{{ app_name }}:{{ x.model_name|lower }}_detail',
@@ -533,7 +538,10 @@ class {{ x.model_name }}(models.Model):
         return False
 
     def get_prev(self):
-        prev = prev_in_order(self)
+        try:
+            prev = prev_in_order(self)
+        except:
+            prev = False
         if prev:
             return reverse(
                 '{{ app_name }}:{{ x.model_name|lower }}_detail',

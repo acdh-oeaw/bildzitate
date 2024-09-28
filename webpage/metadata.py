@@ -2,6 +2,6 @@
 # (by default) in the base.html and index.html
 
 PROJECT_METADATA = {
-    'title': 'Bildzitate Datenbank',
-    'github': 'https://github.com/csae8092/bildzitate'
+    "title": "Bildzitate Datenbank",
+    "github": "https://github.com/csae8092/bildzitate",
 }
