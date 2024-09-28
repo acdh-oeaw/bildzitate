@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_extensions",
     "crispy_forms",
     "crispy_bootstrap5",
     "django_filters",
@@ -68,7 +69,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 SPAGHETTI_SAUCE = {
     "apps": [
-        "infos",
+        "archiv",
     ],
     "show_fields": False,
     "exclude": {"auth": ["user"]},

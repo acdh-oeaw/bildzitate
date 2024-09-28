@@ -1,6 +1,7 @@
 acdh-django-browsing>=2.0,<3
 django-next-prev==1.1.0
 django-spaghetti-and-meatballs==0.4.2
+django-extensions
 Django>=5,<6
 requests>=2.25
 psycopg2-binary

@@ -4,10 +4,6 @@ from django.db import models
 from django.urls import reverse
 from next_prev import next_in_order, prev_in_order
 
-try:
-    from vocabs.models import SkosConcept
-except ModuleNotFoundError:
-    pass
 from browsing.browsing_utils import model_to_dict
 
 
@@ -164,7 +160,7 @@ class ArtWork(models.Model):
     def get_prev(self):
         try:
             prev = prev_in_order(self)
-        except:
+        except ValueError:
             prev = False
         if prev:
             return reverse("archiv:artwork_detail", kwargs={"pk": prev.id})
@@ -271,7 +267,7 @@ class Book(models.Model):
     def get_prev(self):
         try:
             prev = prev_in_order(self)
-        except:
+        except ValueError:
             prev = False
         if prev:
             return reverse("archiv:book_detail", kwargs={"pk": prev.id})
@@ -348,7 +344,7 @@ class Institution(models.Model):
     def get_prev(self):
         try:
             prev = prev_in_order(self)
-        except:
+        except ValueError:
             prev = False
         if prev:
             return reverse("archiv:institution_detail", kwargs={"pk": prev.id})
@@ -389,6 +385,20 @@ class Person(models.Model):
         is_public=True,
         data_lookup="pspelling",
         arche_prop="hasAlternativeTitle",
+    )
+    author_of = models.ManyToManyField(
+        Book,
+        blank=True,
+        verbose_name="Autorin/Autor von",
+        help_text="Autorin/Autor von",
+        related_name="has_author"
+    )
+    painter_of = models.ManyToManyField(
+        Book,
+        blank=True,
+        verbose_name="Malerin/Maler von",
+        help_text="Malerin/Maler von",
+        related_name="has_painter"
     )
     orig_data_csv = models.TextField(
         blank=True, null=True, verbose_name="The original data"
@@ -447,7 +457,7 @@ class Person(models.Model):
     def get_prev(self):
         try:
             prev = prev_in_order(self)
-        except:
+        except ValueError:
             prev = False
         if prev:
             return reverse("archiv:person_detail", kwargs={"pk": prev.id})
@@ -498,6 +508,20 @@ class Text(models.Model):
     ).set_extra(
         is_public=True,
         data_lookup="bid",
+    )
+    mentioned_person = models.ManyToManyField(
+        Person,
+        blank=True,
+        verbose_name="erwähnte Personen",
+        help_text="im Text erwähnte Personen",
+        related_name="person_mentioned_in"
+    )
+    mentioned_artwork = models.ManyToManyField(
+        ArtWork,
+        blank=True,
+        verbose_name="erwähnte Kunstwerke",
+        help_text="im Text erwähnte Kunstwerke",
+        related_name="artwork_mentioned_in"
     )
     orig_data_csv = models.TextField(
         blank=True, null=True, verbose_name="The original data"
@@ -556,7 +580,7 @@ class Text(models.Model):
     def get_prev(self):
         try:
             prev = prev_in_order(self)
-        except:
+        except ValueError:
             prev = False
         if prev:
             return reverse("archiv:text_detail", kwargs={"pk": prev.id})
