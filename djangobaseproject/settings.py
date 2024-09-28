@@ -33,6 +33,13 @@ ALLOWED_HOSTS = [
     ADD_ALLOWED_HOST,
 ]
 
+LEGACY_DB_CONNECTION = {
+    "USER": "admin",
+    "PASSWORD": "password",
+    "HOST": "localhost",
+    "NAME": "bildzit",
+}
+
 # Application definition
 
 INSTALLED_APPS = [

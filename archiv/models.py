@@ -240,7 +240,7 @@ class Book(models.Model):
 
     @classmethod
     def get_source_table(self):
-        return "Buch"
+        return "books"
 
     @classmethod
     def get_natural_primary_key(self):
@@ -416,7 +416,7 @@ class Person(models.Model):
 
     @classmethod
     def get_source_table(self):
-        return "Person"
+        return "people"
 
     @classmethod
     def get_natural_primary_key(self):
@@ -525,7 +525,7 @@ class Text(models.Model):
 
     @classmethod
     def get_source_table(self):
-        return "Text"
+        return "texts"
 
     @classmethod
     def get_natural_primary_key(self):

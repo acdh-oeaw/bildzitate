@@ -2,6 +2,7 @@ import glob
 import json
 
 from tqdm import tqdm
+from sqlalchemy import create_engine
 
 from django.core.serializers.json import DjangoJSONEncoder
 from django.apps import apps
@@ -11,6 +12,13 @@ from django.core.exceptions import FieldDoesNotExist
 from pandas import pandas as pd
 
 from appcreator.populate_fields import *
+
+
+dbc = settings.LEGACY_DB_CONNECTION
+db_connection_str = (
+    f"mysql+pymysql://{dbc['USER']}:{dbc['PASSWORD']}@{dbc['HOST']}/{dbc['NAME']}"
+)
+db_connection = create_engine(db_connection_str)
 
 
 def field_mapping(some_class):
@@ -113,16 +121,29 @@ def run_import(
         fetch_models(app_name), total=len(fetch_models(app_name))
     ):
         model_name = current_class.__name__
-        print(model_name)
+        print(f"model name: {model_name}")
         try:
             source_name = file_class_map[current_class.__name__]
         except KeyError:
             print(f"no match for {model_name}")
             continue
+        print(f"source name: {source_name}")
         field_mapping_dict = field_mapping(current_class)
         print(field_mapping_dict)
         field_mapping_inverse_dict = field_mapping_inverse(current_class)
-        df_data = pd.read_csv(f"./data/{current_class.get_source_table()}")
+        if data_source:
+            query = f"SELECT * FROM {source_name}"
+            if filter_query:
+                query = f"{query} {filter_query}"
+            try:
+                df_data = pd.read_sql(query, con=db_connection)
+                print(source_name)
+            except Exception as e:
+                df_data = False
+                print(source_name, e)
+                continue
+        else:
+            df_data = pd.read_csv(f"./data/{current_class.get_source_table()}")
         if isinstance(df_data, pd.DataFrame):
             df_data.columns = map(str.lower, df_data.columns)
             df_keys = df_data.keys()

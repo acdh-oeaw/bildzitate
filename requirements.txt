@@ -7,3 +7,6 @@ psycopg2-binary
 django-autocomplete-light>=3.9,<4
 pandas
 jinja2
+tqdm
+sqlalchemy
+pymysql

@@ -6,4 +6,4 @@ class Command(BaseCommand):
     help = "Import Data"
 
     def handle(self, *args, **kwargs):
-        run_import("archiv", file_class_map_dict=None, limit=None)
+        run_import("archiv", file_class_map_dict=None, limit=None, data_source="SQL")
