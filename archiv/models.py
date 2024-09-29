@@ -78,7 +78,7 @@ class ArtWork(models.Model):
         help_text="Material",
     ).set_extra(
         is_public=True,
-        data_lookup="material",
+        data_lookup="amaterial",
     )
     dimensions = models.CharField(
         max_length=250,

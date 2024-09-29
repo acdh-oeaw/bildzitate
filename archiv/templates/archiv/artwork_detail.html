@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load static %}
+{% load webpage_extras %}
+{% block title %}{{ object.name }}{% endblock %}
+{% block content %}
+
+<nav aria-label="breadcrumb" class="p-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'webpage:start' %}">Startseite</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'archiv:artwork_browse' %}">Alle Kunstwerke</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Data</li>
+    </ol>
+</nav>
+
+<div class="container">
+    <div class="row pt-3">
+        <div class="col-md-2 text-start">
+            {% if object.get_prev %}
+            <span class="fs-2 ">
+                <a href="{{ object.get_prev }}">
+                    <i class="bi bi-chevron-left" title="previous entry"></i>
+                </a>
+            </span>
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <h1 class="text-center">
+                {{ object }}
+                {% if user.is_authenticated %}
+                <small>
+                    <a href="{{ object.get_edit_url }}">
+                        <i class="bi bi-pencil-square" title="edit entry"></i>
+                    </a>
+                </small>
+                {% endif %}
+                </span>
+        </div>
+        <div class="col-md-2 text-end">
+            <span class="fs-2">
+                {% if object.get_next %}
+                <a href="{{ object.get_next }}">
+                    <i class="bi bi-chevron-right" title="next entry"></i>
+                </a>
+            </span>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="pt-2">
+        <p class="lead text-center">
+            {% for x in object.has_painter.all %}
+            <span class="pe-2">
+                <a href="{{ x.get_absolute_url }}">
+                    {{ x|safe }}
+                </a>
+            </span>
+            {% endfor %}
+            <span class="pe-2">{{ object.written_date|safe }}</span>
+            <span class="pe-2">{{ object.material|safe }}</span>
+            <span class="pe-2">{{ object.dimensions|safe }}</span>
+            {% if object.holding_institution %}
+            <a href="{{ object.holding_institution.get_absolute_url }}">
+                <span>{{ object.holding_institution|safe }}</span>
+            </a>
+            {% endif %}
+        </p>
+        <div>
+            <h2>{{ object.artwork_mentioned_in.count }} Erwähnungen</h2>
+            <ul class="list-unstyled">
+                {% for x in object.artwork_mentioned_in.all %}
+                <li>
+                    <div class="p-3">
+                        <figure>
+                            <blockquote class="blockquote">
+                            <p>{{ x.text|safe }}</p>
+                            </blockquote>
+                            <figcaption class="blockquote-footer">
+                            in <cite title="{{ x.source|safe }}">{{ x.source|safe }} <a href="{{ x.get_absolute_url }}"><i class="bi bi-box-arrow-up-right" aria-hidden="true">
+                                <span class="visually-hidden">Gehe zu Detailansicht zum Texteintrag von {{ x.source|safe }}</span>
+                            </i></a></cite>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </li>
+                <hr />
+                
+                {% endfor %}
+            </ul>
+        </div>
+        
+    </div>
+
+    {% if user.is_authenticated %}
+    <div class="float-end">
+        <a href="{{ object.get_delete_url }}">
+            <i class="bi bi-trash3" title="delete entry"></i>
+        </a>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

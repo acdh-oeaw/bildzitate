@@ -61,7 +61,7 @@ class ArtWorkListView(GenericListView):
 class ArtWorkDetailView(BaseDetailView):
 
     model = ArtWork
-    template_name = "archiv/generic_detail.html"
+    template_name = "archiv/artwork_detail.html"
 
 
 class ArtWorkCreate(BaseCreateView):
