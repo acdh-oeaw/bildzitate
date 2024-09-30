@@ -23,7 +23,7 @@
                             title="back to list view"></i>
                     </a>
                 </small>
-                {{ object }}
+                {{ object|safe }}
                 {% if user.is_authenticated %}
                 <small>
                     <a href="{{ object.get_edit_url }}">
