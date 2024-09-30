@@ -15,6 +15,10 @@ class ArtWorkTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name="ID")
     merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
+    has_painter = tables.TemplateColumn(
+        "{% for x in record.has_painter.all %} {{ x }}{% endfor %}",
+        verbose_name="Maler*In",
+    )
 
     class Meta:
         model = ArtWork
@@ -26,6 +30,10 @@ class BookTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name="ID")
     merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
+    has_author = tables.TemplateColumn(
+        "{% for x in record.has_author.all %} {{ x }}{% endfor %}",
+        verbose_name="Autor*In",
+    )
 
     class Meta:
         model = Book
@@ -36,7 +44,12 @@ class BookTable(tables.Table):
 class InstitutionTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name="ID")
+    name = tables.TemplateColumn("{{ record|safe }}", verbose_name="Name")
     merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
+    rvn_artwork_holding_institution_institution = tables.TemplateColumn(
+        "<ul class='list-unstyled'>{% for x in  record.rvn_artwork_holding_institution_institution.all %} <li>{{ x }}</li>{% endfor %}",  # noqa:
+        verbose_name="Kunstwerke",
+    )
 
     class Meta:
         model = Institution
@@ -48,6 +61,14 @@ class PersonTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name="ID")
     merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
+    author_of = tables.TemplateColumn(
+        "<ul class='list-unstyled'>{% for x in  record.author_of.all %} <li>{{ x }}</li>{% endfor %}",
+        verbose_name="hat verfasst",
+    )
+    painter_of = tables.TemplateColumn(
+        "<ul class='list-unstyled'>{% for x in  record.painter_of.all %} <li>{{ x }}</li>{% endfor %}",
+        verbose_name="hat geschaffen",  # noqa:
+    )
 
     class Meta:
         model = Person
@@ -58,7 +79,12 @@ class PersonTable(tables.Table):
 class TextTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name="ID")
+    source = tables.TemplateColumn("{{ record|safe }}")
     merge = MergeColumn(verbose_name="keep | remove", accessor="pk")
+    mentioned_artwork = tables.TemplateColumn(
+        "<ul class='list-unstyled'>{% for x in  record.mentioned_artwork.all %} <li>{{ x }}</li>{% endfor %}",
+        verbose_name="erwähnte Kunstwerke",  # noqa:
+    )
 
     class Meta:
         model = Text

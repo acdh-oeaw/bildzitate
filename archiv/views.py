@@ -53,6 +53,7 @@ class ArtWorkListView(GenericListView):
     init_columns = [
         "id",
         "name",
+        "has_painter",
     ]
     enable_merge = True
     template_name = "archiv/generic_list.html"
@@ -79,6 +80,7 @@ class ArtWorkUpdate(BaseUpdateView):
 
     model = ArtWork
     form_class = ArtWorkForm
+    template_name = "archiv/create_base_template.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -131,6 +133,7 @@ class BookUpdate(BaseUpdateView):
 
     model = Book
     form_class = BookForm
+    template_name = "archiv/create_base_template.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -156,6 +159,7 @@ class InstitutionListView(GenericListView):
     init_columns = [
         "id",
         "name",
+        "rvn_artwork_holding_institution_institution",
     ]
     enable_merge = True
     template_name = "archiv/generic_list.html"
@@ -182,6 +186,7 @@ class InstitutionUpdate(BaseUpdateView):
 
     model = Institution
     form_class = InstitutionForm
+    template_name = "archiv/create_base_template.html"
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -207,6 +212,8 @@ class PersonListView(GenericListView):
     init_columns = [
         "id",
         "name",
+        "author_of",
+        "painter_of",
     ]
     enable_merge = True
     template_name = "archiv/generic_list.html"
@@ -259,6 +266,7 @@ class TextListView(GenericListView):
     init_columns = [
         "id",
         "source",
+        "mentioned_artwork",
     ]
     enable_merge = True
     template_name = "archiv/generic_list.html"
