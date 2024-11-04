@@ -35,3 +35,4 @@ node_modules
 # other things
 secret.env
 *.ipynb
+out/
