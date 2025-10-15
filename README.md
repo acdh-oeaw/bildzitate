@@ -19,15 +19,17 @@ At the ACDH-CH we use a centralized database-server. So instead of spawning a da
 
 ### building the image
 
-* `docker build -t bzd:latest .`
-* `docker build -t bzd:latest --no-cache .`
+* `docker build -t bildzitate:latest -t bildzitate .`
+* `docker build -t bildzitate:latest --no-cache .`
 
 
 ### running the image
 
 To run the image you should provide an `.env` file to pass in needed environment variables; see example below:
 
-* `docker run -it -p 8020:8020 --rm --env-file default.env --name bzd bzd:latest`
+```shell
+docker run -it --network="host" --rm --env-file default.env bildzitate:latest
+```
 
 -----
 

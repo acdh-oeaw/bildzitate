@@ -8,9 +8,9 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 
 COPY nginx.default /etc/nginx/sites-available/default
 
+RUN mkdir -p /opt/app
 COPY . /opt/app
 WORKDIR /opt/app
-RUN mkdir -p /opt/app
 RUN uv sync --no-install-project
 RUN chown -R www-data:www-data /opt/app
 
