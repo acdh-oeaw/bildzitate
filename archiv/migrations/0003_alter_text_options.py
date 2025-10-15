@@ -4,7 +4,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("archiv", "0002_person_author_of_person_painter_of_and_more"),
     ]

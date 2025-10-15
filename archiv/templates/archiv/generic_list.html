@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load django_tables2 %}
-{% load browsing_extras %}
+
 {% load crispy_forms_field %}
 {% load crispy_forms_tags %}
 {% block title %} Browse {{ class_name }} {% endblock %}
@@ -13,7 +13,7 @@
 <div class="container">
     <div class="text-center p-3">
         <h1>
-            Browse {% class_definition %} {% block list_title %}{% endblock %}
+            Browse {% block list_title %}{% endblock %}
         </h1>
         {% if user.is_authenticated %}
         {% if create_view_link %}

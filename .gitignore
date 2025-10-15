@@ -37,3 +37,5 @@ secret.env
 *.ipynb
 out/
 out.zip
+dump_and_restore.sh
+bildzitate.sql
