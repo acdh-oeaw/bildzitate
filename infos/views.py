@@ -19,7 +19,7 @@ from .forms import (
 )
 from .tables import AboutTheProjectTable, ProjectInstTable, TeamMemberTable
 from .models import AboutTheProject, ProjectInst, TeamMember
-from browsing.browsing_utils import GenericListView, BaseCreateView, BaseUpdateView
+from browsing.utils import GenericListView, BaseCreateView, BaseUpdateView
 
 
 class TeamMemberListView(GenericListView):

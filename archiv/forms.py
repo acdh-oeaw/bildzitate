@@ -42,7 +42,6 @@ class ArtWorkFilterFormHelper(FormHelper):
 
 
 class ArtWorkForm(forms.ModelForm):
-
     class Meta:
         model = ArtWork
         fields = "__all__"
@@ -83,7 +82,6 @@ class BookFilterFormHelper(FormHelper):
 
 
 class BookForm(forms.ModelForm):
-
     class Meta:
         model = Book
         fields = "__all__"
@@ -116,7 +114,6 @@ class InstitutionFilterFormHelper(FormHelper):
 
 
 class InstitutionForm(forms.ModelForm):
-
     class Meta:
         model = Institution
         fields = "__all__"
@@ -156,7 +153,6 @@ class PersonFilterFormHelper(FormHelper):
 
 
 class PersonForm(forms.ModelForm):
-
     class Meta:
         model = Person
         fields = "__all__"
@@ -197,7 +193,6 @@ class TextFilterFormHelper(FormHelper):
 
 
 class TextForm(forms.ModelForm):
-
     class Meta:
         model = Text
         fields = "__all__"

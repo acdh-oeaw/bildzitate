@@ -4,7 +4,7 @@ from django.db import models
 from django.urls import reverse
 from next_prev import next_in_order, prev_in_order
 
-from browsing.browsing_utils import model_to_dict
+from browsing.utils import model_to_dict
 
 
 def set_extra(self, **kwargs):
@@ -108,7 +108,6 @@ class ArtWork(models.Model):
     ).set_extra(is_public=True)
 
     class Meta:
-
         ordering = [
             "name",
         ]
@@ -215,7 +214,6 @@ class Book(models.Model):
     ).set_extra(is_public=True)
 
     class Meta:
-
         ordering = [
             "legacy_pk",
         ]
@@ -292,7 +290,6 @@ class Institution(models.Model):
     ).set_extra(is_public=True)
 
     class Meta:
-
         ordering = [
             "name",
         ]
@@ -405,7 +402,6 @@ class Person(models.Model):
     ).set_extra(is_public=True)
 
     class Meta:
-
         ordering = [
             "legacy_pk",
         ]
@@ -528,7 +524,6 @@ class Text(models.Model):
     ).set_extra(is_public=True)
 
     class Meta:
-
         ordering = [
             "id",
         ]
