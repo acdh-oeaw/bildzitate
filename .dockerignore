@@ -5,3 +5,5 @@ db.sqlite3
 secret.env
 .git
 /venv
+.venv/
+bildzitate.sql
