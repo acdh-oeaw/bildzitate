@@ -114,11 +114,13 @@ WSGI_APPLICATION = "djangobaseproject.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
+        "OPTIONS": {"options": "-c search_path=public,bildzitate"},
         "NAME": os.environ.get("POSTGRES_DB", "bildzitate"),
         "USER": os.environ.get("POSTGRES_USER", "postgres"),
         "PASSWORD": os.environ.get("POSTGRES_PASSWORD", "postgres"),
         "HOST": os.environ.get("POSTGRES_HOST", "localhost"),
         "PORT": os.environ.get("POSTEGRES_PORT", "5432"),
+        "DISABLE_SERVER_SIDE_CURSORS": True,
     }
 }
 
